@@ -8,7 +8,7 @@ A tiny educational example of Teacher→Student knowledge distillation (KD) on M
 $$
 \mathcal{L}_{\mathrm{KD}}
 =(1-\alpha)\mathrm{CE}(\mathbf{z}_s, y)
-+\alpha \T^{2}\mathrm{KL}\left(
++\alpha T^{2}\mathrm{KL}\left(
   \mathrm{softmax}\left(\frac{\mathbf{z}_t}{T}\right)\middle\|\mathrm{softmax}\left(\frac{\mathbf{z}_s}{T}\right)
 \right)
 $$
