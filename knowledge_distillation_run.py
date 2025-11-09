@@ -22,20 +22,15 @@ def set_seed(seed=2025):
     return g
 
 def enforce_determinism():
-    """开启确定性算法并限制可能的非确定性来源。"""
-    # [NEW] 打开确定性算法；若遇到无确定性实现的算子会抛错，便于排查
     torch.use_deterministic_algorithms(True)
 
-    # [NEW] cuDNN 相关：只用确定性算法，禁用 benchmark(算法搜索会导致不确定)
     torch.backends.cudnn.deterministic = True
     torch.backends.cudnn.benchmark = False
 
-    # [NEW] 关闭 TF32，减少不同硬件/驱动间数值差异
     if torch.cuda.is_available():
         torch.backends.cuda.matmul.allow_tf32 = False
         torch.backends.cudnn.allow_tf32 = False
 
-    # [NEW] 可选：限制 CPU 线程，进一步减少并行归约顺序差异（如需极致位级一致）
     os.environ.setdefault("OMP_NUM_THREADS", "1")
     os.environ.setdefault("MKL_NUM_THREADS", "1")
 
