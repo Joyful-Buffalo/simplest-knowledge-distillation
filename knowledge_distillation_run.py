@@ -3,6 +3,7 @@
 # @Time    : 2025/11/9
 # @Author  : Joyful Buffalo
 # @File    : knowledge_distillation_run.py
+import os
 from copy import deepcopy
 
 import torch
@@ -11,7 +12,34 @@ from torch import nn
 from torch.nn import functional as F
 
 
-def load_data():
+def set_seed(seed=2025):
+    torch.manual_seed(seed)
+    if torch.cuda.is_available():
+        torch.cuda.manual_seed(seed)
+        torch.cuda.manual_seed_all(seed)
+    g = torch.Generator()
+    g.manual_seed(seed)
+    return g
+
+def enforce_determinism():
+    """开启确定性算法并限制可能的非确定性来源。"""
+    # [NEW] 打开确定性算法；若遇到无确定性实现的算子会抛错，便于排查
+    torch.use_deterministic_algorithms(True)
+
+    # [NEW] cuDNN 相关：只用确定性算法，禁用 benchmark(算法搜索会导致不确定)
+    torch.backends.cudnn.deterministic = True
+    torch.backends.cudnn.benchmark = False
+
+    # [NEW] 关闭 TF32，减少不同硬件/驱动间数值差异
+    if torch.cuda.is_available():
+        torch.backends.cuda.matmul.allow_tf32 = False
+        torch.backends.cudnn.allow_tf32 = False
+
+    # [NEW] 可选：限制 CPU 线程，进一步减少并行归约顺序差异（如需极致位级一致）
+    os.environ.setdefault("OMP_NUM_THREADS", "1")
+    os.environ.setdefault("MKL_NUM_THREADS", "1")
+
+def load_data(g):
     train_dataset = torchvision.datasets.MNIST(
         root='dataset/',
         train=True,
@@ -29,14 +57,16 @@ def load_data():
         batch_size=1024,
         shuffle=True,
         pin_memory=torch.cuda.is_available(),
-        num_workers=0
+        num_workers=0,
+        generator=g
     )
     test_loader = torch.utils.data.DataLoader(
         dataset=test_dataset,
         batch_size=1024,
         shuffle=False,
         pin_memory=torch.cuda.is_available(),
-        num_workers=0
+        num_workers=0,
+        generator=g
     )
     return train_loader, test_loader
 
@@ -165,7 +195,11 @@ def distillation(student_model, teacher_model, train_dataloader, test_dataloader
 
 
 def main():
-    train_dataloader, test_dataloader = load_data()
+    os.environ.setdefault('CUBLAS_WORKSPACE_CONFIG', ':4096:8')
+    g = set_seed(2025)
+    enforce_determinism()
+
+    train_dataloader, test_dataloader = load_data(g)
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
     print('step 1: Train Teacher')
@@ -213,3 +247,6 @@ def main():
 
 if __name__ == '__main__':
     main()
+# Teacher acc: 98.90
+# StudentCNN acc: 97.86|space acc: 98.06|continue acc: 98.26
+# StudentMLP acc: 94.96|space acc: 95.51|continue acc: 95.81
