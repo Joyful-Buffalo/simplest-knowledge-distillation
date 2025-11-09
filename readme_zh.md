@@ -6,13 +6,13 @@
 
 $$
 \mathcal{L}_{\text{KD}}
-=(1-\alpha)\,\mathrm{CE}(\mathbf{z}_s, y)
-+\alpha\,T^{2}\,\mathrm{KL}\!\left(
-\operatorname{softmax}\!\left(\frac{\mathbf{z}_t}{T}\right)\,
-\middle\|\, 
-\operatorname{softmax}\!\left(\frac{\mathbf{z}_s}{T}\right)
-\right)
-$$原理
+=(1-\alpha)\,\mathrm{CE}(\mathbf z_s, y)
++\alpha\,T^{2}\,\mathrm{KL}\!\Big(
+\mathrm{softmax}(\mathbf z_t/T)
+\;\|\;
+\mathrm{softmax}(\mathbf z_s/T)
+\Big)
+$$
 
 
 ## 依赖
