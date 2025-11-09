@@ -5,7 +5,14 @@ A tiny educational example of Teacher→Student knowledge distillation (KD) on M
 
 ## Principle
 
-$$\mathcal{L}_{\mathrm{KD}}=(1-\alpha)\,\mathrm{CE}(\mathbf z_s,y)+\alpha\,T^{2}\,\mathrm{KL}\left(\mathrm{softmax}(\mathbf z_t/T)\,\|\,\mathrm{softmax}(\mathbf z_s/T)\right)$$
+$$
+\mathcal{L}_{\mathrm{KD}}
+=(1-\alpha)\,\mathrm{CE}(\mathbf{z}_s, y)
++\alpha\,T^{2}\,\mathrm{KL}\!\left(
+  \mathrm{softmax}\!\left(\frac{\mathbf{z}_t}{T}\right)\,\middle\|\,\mathrm{softmax}\!\left(\frac{\mathbf{z}_s}{T}\right)
+\right)
+$$
+
 
 
 
