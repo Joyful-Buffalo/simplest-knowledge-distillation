@@ -5,7 +5,6 @@ A tiny educational example of Teacher→Student knowledge distillation (KD) on M
 
 ## Principle
 
-## 主要公式
 $$
 \mathcal{L}_{\mathrm{KD}}
 = (1-\alpha)\,\mathrm{CE}(\mathbf z_s, y)
