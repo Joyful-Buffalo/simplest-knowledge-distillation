@@ -7,11 +7,9 @@
 ## 主要公式
 $$
 \mathcal{L}_{\mathrm{KD}}
-= (1-\alpha)\,\mathrm{CE}(\mathbf z_s, y)
-+ \alpha\,T^{2}\,\mathrm{KL}\left(
-\mathrm{softmax}(\mathbf z_t/T)
-\parallel
-\mathrm{softmax}(\mathbf z_s/T)
+=(1-\alpha)\mathrm{CE}(\mathbf{z}_s, y)
++\alpha T^{2}\mathrm{KL}\left(
+  \mathrm{softmax}\left(\frac{\mathbf{z}_t}{T}\right)\middle\|\mathrm{softmax}\left(\frac{\mathbf{z}_s}{T}\right)
 \right)
 $$
 
