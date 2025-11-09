@@ -1,6 +1,19 @@
 # MNIST 最小知识蒸馏示例
 
-> 一个用于教学/入门的简洁示例：在 MNIST 上进行 Teacher→Student 的知识蒸馏（KD）。
+> 一个用于入门示例：在 MNIST 上进行 Teacher→Student 的知识蒸馏（KD）。
+
+## 原理
+
+$$
+\mathcal{L}_{\text{KD}}
+=(1-\alpha)\,\mathrm{CE}(\mathbf{z}_s, y)
++\alpha\,T^{2}\,\mathrm{KL}\!\left(
+\operatorname{softmax}\!\left(\frac{\mathbf{z}_t}{T}\right)\,
+\middle\|\, 
+\operatorname{softmax}\!\left(\frac{\mathbf{z}_s}{T}\right)
+\right)
+$$原理
+
 
 ## 依赖
 - `python>=3.9`
@@ -28,15 +41,15 @@ python knowledge_distillation_run.py
 
 ## 预期结果（指示性）
 | 模型                     | 测试准确率(%) |
-|------------------------|---------:|
-| Teacher (CNN)         |   ~98–99 |
-| Student CNN (baseline)|   ~97–98 |
-| Student CNN (KD)      |   ~97–98 |
-| Student MLP (baseline)|   ~94–95 |
-| Student MLP (KD)      |   ~94–95 |
+|-------------------------|-------------:|
+| Teacher (CNN)           |        98.90 |
+| Student CNN (baseline)  |        97.86 |
+| Student CNN (KD)        |        98.26 |
+| Student MLP (baseline)  |        94.96 |
+| Student MLP (KD)        |        95.81 |
 
 > 数值会随硬件/版本/随机种子略有变化。
 
 ## 许可证与参考
-- 用于学习与演示，无商业价值说明。
+- 用于学习与演示，无商业价值。
 - 参考：Hinton, Vinyals, Dean. *Distilling the Knowledge in a Neural Network* (2015).

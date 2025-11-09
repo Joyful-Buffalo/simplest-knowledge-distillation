@@ -3,6 +3,18 @@
 
 A tiny educational example of Teacher→Student knowledge distillation (KD) on MNIST.
 
+## Principle
+
+$$
+\mathcal{L}_{\text{KD}}
+=(1-\alpha)\,\mathrm{CE}(\mathbf{z}_s, y)
++\alpha\,T^{2}\,\mathrm{KL}\!\left(
+\operatorname{softmax}\!\left(\frac{\mathbf{z}_t}{T}\right)\,
+\middle\|\, 
+\operatorname{softmax}\!\left(\frac{\mathbf{z}_s}{T}\right)
+\right)
+$$
+
 ## Requirements
 - `python>=3.9`
 - `torch`
