@@ -41,13 +41,9 @@ python knowledge_distillation_run.py
 - Optimizer: Adam with `lr = 1e-2`
 
 ## Expected Results (indicative)
-| Model                    | Test Acc (%) |
-|-------------------------|-------------:|
-| Teacher (CNN)           |        98.90 |
-| Student CNN (baseline)  |        97.86 |
-| Student CNN (KD)        |        98.26 |
-| Student MLP (baseline)  |        94.96 |
-| Student MLP (KD)        |        95.81 |
+Teacher acc: 98.90
+StudentCNN acc: 97.86|space acc: 97.60|continue acc: 97.87
+StudentMLP acc: 94.96|space acc: 94.43|continue acc: 95.08
 
 > Numbers vary with hardware, versions, and seeds.
 

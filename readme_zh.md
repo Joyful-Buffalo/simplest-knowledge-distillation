@@ -40,13 +40,9 @@ python knowledge_distillation_run.py
 - 优化器：Adam，`lr=1e-2`
 
 ## 预期结果（指示性）
-| 模型                     | 测试准确率(%) |
-|-------------------------|-------------:|
-| Teacher (CNN)           |        98.90 |
-| Student CNN (baseline)  |        97.86 |
-| Student CNN (KD)        |        98.26 |
-| Student MLP (baseline)  |        94.96 |
-| Student MLP (KD)        |        95.81 |
+Teacher acc: 98.90
+StudentCNN acc: 97.86|space acc: 97.60|continue acc: 97.87
+StudentMLP acc: 94.96|space acc: 94.43|continue acc: 95.08
 
 > 数值会随硬件/版本/随机种子略有变化。
 
