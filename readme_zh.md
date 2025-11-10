@@ -39,10 +39,10 @@ python vanilla_kd_run.py
 - `alpha=0.5`
 - 优化器：Adam，`lr=1e-2`
 
-## 预期结果（指示性）
+## 预期结果
 Teacher acc: 98.90
-StudentCNN acc: 97.86|space acc: 97.60|continue acc: 97.87
-StudentMLP acc: 94.96|space acc: 94.43|continue acc: 95.08
+StudentCNN acc: 97.86|space acc: 98.06|continue acc: 98.26
+StudentMLP acc: 94.96|space acc: 95.51|continue acc: 95.81
 
 > 数值会随硬件/版本/随机种子略有变化。
 
