@@ -29,9 +29,9 @@ pip install -r requirements.txt
 使用 `torchvision.datasets.MNIST`，首次运行会自动下载到 `dataset/`。
 
 ## 运行
-将训练脚本为 `knowledge_distillation_run.py`：
+将训练脚本为 `vanilla_kd_run.py`：
 ```bash
-python knowledge_distillation_run.py
+python vanilla_kd_run.py
 ```
 
 ## 关键可调项

@@ -30,9 +30,9 @@ pip install -r requirements.txt
 Uses `torchvision.datasets.MNIST`. It will be downloaded automatically to `dataset/` on first run.
 
 ## Run
-training script as `knowledge_distillation_run.py` and execute:
+training script as `vanilla_kd_run.py` and execute:
 ```bash
-python knowledge_distillation_run.py
+python vanilla_kd_run.py
 ```
 
 ## Key Tunables
