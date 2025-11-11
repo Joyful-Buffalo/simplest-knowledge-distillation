@@ -176,7 +176,7 @@ def zscore_logits(logits, tau, eps=1e-6):
     return (logits - mu) / (std * tau)
 
 
-def distillation(student_model, teacher_model, train_dataloader, test_dataloader, device, temperature=2, alpha=0.5, kd_weight=4):
+def distillation(student_model, teacher_model, train_dataloader, test_dataloader, device, temperature=2, alpha=0.5, kd_weight=1):
     hard_loss = nn.CrossEntropyLoss()
     soft_loss = nn.KLDivLoss(reduction='batchmean')
     optimizer = torch.optim.Adam(student_model.parameters(), lr=0.01, betas=(0.9, 0.999))
@@ -193,7 +193,7 @@ def distillation(student_model, teacher_model, train_dataloader, test_dataloader
             student_std = zscore_logits(outputs, temperature)
             teacher_std = zscore_logits(teacher_outputs, temperature)
             soft_loss_value = soft_loss(F.log_softmax(student_std, dim=1),
-                                        F.softmax(teacher_std, dim=1)) * kd_weight
+                                        F.softmax(teacher_std, dim=1)) * kd_weight * (temperature ** 2)
             hard_loss_value = hard_loss(outputs, labels)
             loss = alpha * soft_loss_value + (1 - alpha) * hard_loss_value
             loss.backward()
