@@ -41,8 +41,10 @@ python vanilla_kd_run.py
 
 ## 预期结果
 Teacher acc: 98.86
-StudentCNN acc: 97.59|space acc: 98.22|continue acc: 98.07
-StudentMLP acc: 95.26|space acc: 95.42|continue acc: 96.08
+
+StudentCNN acc: 97.59 |space acc: 98.22 |continue acc: 98.07
+
+StudentMLP acc: 95.26 |space acc: 95.42 |continue acc: 96.08
 
 > 数值会随硬件/版本/随机种子略有变化。
 
