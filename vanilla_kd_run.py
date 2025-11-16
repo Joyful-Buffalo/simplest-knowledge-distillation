@@ -52,16 +52,18 @@ def load_data(g):
         batch_size=1024,
         shuffle=True,
         pin_memory=torch.cuda.is_available(),
-        num_workers=0,
-        generator=g
+        num_workers=8,
+        generator=g,
+        persistent_workers=True
     )
     test_loader = torch.utils.data.DataLoader(
         dataset=test_dataset,
         batch_size=1024,
         shuffle=False,
         pin_memory=torch.cuda.is_available(),
-        num_workers=0,
-        generator=g
+        num_workers=8,
+        generator=g,
+        persistent_workers=True
     )
     return train_loader, test_loader
 
@@ -242,6 +244,6 @@ def main():
 
 if __name__ == '__main__':
     main()
-# Teacher acc: 98.90
-# StudentCNN acc: 97.86|space acc: 98.06|continue acc: 98.26
-# StudentMLP acc: 94.96|space acc: 95.51|continue acc: 95.81
+# Teacher acc: 98.86
+# StudentCNN acc: 97.59|space acc: 98.22|continue acc: 98.07
+# StudentMLP acc: 95.26|space acc: 95.42|continue acc: 96.08

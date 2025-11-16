@@ -41,9 +41,9 @@ python vanilla_kd_run.py
 - Optimizer: Adam with `lr = 1e-2`
 
 ## Expected Results
-Teacher acc: 98.90
-StudentCNN acc: 97.86|space acc: 98.06|continue acc: 98.26
-StudentMLP acc: 94.96|space acc: 95.51|continue acc: 95.81
+Teacher acc: 98.86
+StudentCNN acc: 97.59|space acc: 98.22|continue acc: 98.07
+StudentMLP acc: 95.26|space acc: 95.42|continue acc: 96.08
 
 > Numbers vary with hardware, versions, and seeds.
 
