@@ -3,11 +3,6 @@
 # @Time    : 2025/11/11
 # @Author  : Joyful Buffalo
 # @File    : logit_stand_kd_run.py
-# !/usr/bin/env python
-# -*- coding: utf-8 -*-
-# @Time    : 2025/11/9
-# @Author  : Joyful Buffalo
-# @File    : knowledge_distillation_run.py
 import os
 from copy import deepcopy
 
