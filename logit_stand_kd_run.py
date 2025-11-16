@@ -12,13 +12,13 @@ import os
 from copy import deepcopy
 
 import torch
-import torchvision
 from torch import nn
 from torch.nn import functional as F
-from utils.reproducible import set_seed, enforce_determinism
+
 from simplest_models.students import StudentCnn, StudentMLP
 from simplest_models.teachers import Teacher
 from utils.dataset.mnist import mnist_load_data
+from utils.reproducible import set_seed, enforce_determinism
 
 
 def train_model(train_dataloader, model, criterion, optimizer, device):
