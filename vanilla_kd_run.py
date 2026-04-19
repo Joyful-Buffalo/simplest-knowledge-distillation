@@ -5,6 +5,7 @@
 # @File    : knowledge_distillation_run.py
 import os
 from copy import deepcopy
+import time
 
 import torch
 from torch import nn
@@ -88,7 +89,7 @@ def main():
     os.environ.setdefault('CUBLAS_WORKSPACE_CONFIG', ':4096:8')
     g = set_seed(2025)
     enforce_determinism()
-
+    start_time = time.time()
     train_dataloader, test_dataloader = mnist_load_data(g)
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
@@ -133,10 +134,16 @@ def main():
     print(f'Teacher acc: {teacher_acc:.2f}')
     print(f'StudentCNN acc: {student_cnn_acc:.2f}|space acc: {student_cnn_space_acc:.2f}|continue acc: {student_cnn_continue_acc:.2f}')
     print(f'StudentMLP acc: {student_mlp_acc:.2f}|space acc: {student_mlp_space_acc:.2f}|continue acc: {student_mlp_continue_acc:.2f}')
+    print(f'Total time taken: {time.time() - start_time:.2f} seconds')
 
 
 if __name__ == '__main__':
     main()
-# Teacher acc: 98.86
-# StudentCNN acc: 97.59|space acc: 98.22|continue acc: 98.07
-# StudentMLP acc: 95.26|space acc: 95.42|continue acc: 96.08
+# 10epoch
+# Teacher acc: 98.97
+# StudentCNN acc: 97.59|space acc: 98.11|continue acc: 98.24
+# StudentMLP acc: 95.26|space acc: 95.82|continue acc: 96.24
+# 100epochs
+# Teacher acc: 99.12 
+# StudentCNN acc: 98.48|space acc: 98.44|continue acc: 98.44
+# StudentMLP acc: 96.07|space acc: 96.10|continue acc: 95.71
